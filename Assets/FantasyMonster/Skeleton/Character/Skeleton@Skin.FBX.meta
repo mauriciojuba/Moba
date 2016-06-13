@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 5a35c5f0a89b9654d897ccd7c8f81bd0
-timeCreated: 1460998605
+timeCreated: 1465796188
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -588,13 +588,13 @@ ModelImporter:
       scale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
       transformModified: 1
     - name: Bip001 Prop1
-      position: {x: -0.093980685, y: -0, z: -1.688}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000002, y: 1, z: 0.99999994}
+      position: {x: -0.085, y: 0.172, z: 0.392}
+      rotation: {x: 0.5, y: 0.5, z: -0.5, w: -0.5}
+      scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Object01
-      position: {x: 2.679, y: 3.895, z: 0.14439203}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      position: {x: 1.1718873, y: 0.25544667, z: -0.6737152}
+      rotation: {x: -0.5, y: 0.50000006, z: -0.5, w: -0.5}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: Object02
