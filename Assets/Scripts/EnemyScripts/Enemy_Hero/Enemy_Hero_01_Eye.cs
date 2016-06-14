@@ -4,7 +4,7 @@ using System.Collections;
 public class Enemy_Hero_01_Eye : MonoBehaviour {
 
     public bool playerNear, minionNear, towerNear;
-    public GameObject closestMinion;
+    public GameObject closestMinion, closestTower;
 
     //trocar para as tags usadas na cena original
 	void OnTriggerEnter(Collider hit)
@@ -22,6 +22,7 @@ public class Enemy_Hero_01_Eye : MonoBehaviour {
         if (hit.CompareTag("PlayerTower")&& !playerNear)
         {
             towerNear = true;
+            closestTower = hit.gameObject;
         }
     }
     void OnTriggerExit(Collider hit)
