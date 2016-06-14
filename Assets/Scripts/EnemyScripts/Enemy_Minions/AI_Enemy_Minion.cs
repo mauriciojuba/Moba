@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(LivingEntity))]
 public class AI_Enemy_Minion : MonoBehaviour {
 
     NavMeshAgent navAgent;
     GameObject Target, Player;
     Enemy_Hero_01_Eye Eye;
-    public float Life;
     public GameObject attack;
-
+	IDamageable thisEntity;
+	float health;
 
 
 
@@ -18,7 +19,10 @@ public class AI_Enemy_Minion : MonoBehaviour {
     void Start()
     {
         //trocar para nome do player na cena original
-        Player = GameObject.Find("Player");
+       
+		thisEntity = this.GetComponent<IDamageable>();
+		health = thisEntity.getCurrHealth();
+		Player = GameObject.Find("Player");
         Eye = GetComponentInChildren<Enemy_Hero_01_Eye>();
         navAgent = GetComponent<NavMeshAgent>();
         state = new AIDelegate(Progress);

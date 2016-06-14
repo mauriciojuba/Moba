@@ -45,22 +45,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Buffs.cs" />
+     <Compile Include="Assets\Scripts\Bullet.cs" />
      <Compile Include="Assets\Scripts\CameraScripts\CameraShake.cs" />
      <Compile Include="Assets\Scripts\CameraScripts\TopDownCamera.cs" />
+     <Compile Include="Assets\Scripts\EnemyScripts\EnemyAI.cs" />
      <Compile Include="Assets\Scripts\EnemyScripts\Enemy_Hero\AI_Enemy_Hero_01.cs" />
      <Compile Include="Assets\Scripts\EnemyScripts\Enemy_Hero\Enemy_Hero_01_Attack.cs" />
      <Compile Include="Assets\Scripts\EnemyScripts\Enemy_Hero\Enemy_Hero_01_Eye.cs" />
      <Compile Include="Assets\Scripts\EnemyScripts\Enemy_Hero\Enemy_RecoveryPoint.cs" />
+     <Compile Include="Assets\Scripts\EnemyScripts\Enemy_Minions\AI_Enemy_Minion.cs" />
+     <Compile Include="Assets\Scripts\IDamageable.cs" />
+     <Compile Include="Assets\Scripts\LivingEntity.cs" />
      <Compile Include="Assets\Scripts\PlayerScripts\Hero\Hero.cs" />
      <Compile Include="Assets\Scripts\PlayerScripts\Hero\HeroMovement.cs" />
-     <Compile Include="Assets\VICTOR_InimigoTurretBase\Scripts\Base.cs" />
-     <Compile Include="Assets\VICTOR_InimigoTurretBase\Scripts\Buffs.cs" />
-     <Compile Include="Assets\VICTOR_InimigoTurretBase\Scripts\Bullet.cs" />
-     <Compile Include="Assets\VICTOR_InimigoTurretBase\Scripts\EnemyAI.cs" />
-     <Compile Include="Assets\VICTOR_InimigoTurretBase\Scripts\IDamageable.cs" />
-     <Compile Include="Assets\VICTOR_InimigoTurretBase\Scripts\Inhibitor.cs" />
-     <Compile Include="Assets\VICTOR_InimigoTurretBase\Scripts\LivingEntity.cs" />
-     <Compile Include="Assets\VICTOR_InimigoTurretBase\Scripts\Turret.cs" />
+     <Compile Include="Assets\Scripts\StructureScripts\Base.cs" />
+     <Compile Include="Assets\Scripts\StructureScripts\Inhibitor.cs" />
+     <Compile Include="Assets\Scripts\StructureScripts\Turret.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
