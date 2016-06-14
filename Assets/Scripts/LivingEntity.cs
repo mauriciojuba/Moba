@@ -1,36 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
-public class LivingEntity : MonoBehaviour, IDamageable {
+public class LivingEntity : MonoBehaviour {
 
-	float currentHealth;
-	public float maxHealth = 10.0f;
-	public event System.Action onDeath;
 
-	void Awake(){
-		currentHealth = maxHealth;
-	}
+    public float life;
+    public bool comImagem;
+    public Image imagemHP;
 
-	public void dealDamage (float dmg){
-		currentHealth -= dmg;
-		if(currentHealth<=0){
-			if(onDeath!=null){
-				this.onDeath();
-			}
-			GameObject.Destroy(gameObject);
-		}
-	}
-
-	public void healDamage (float dmg){
-		currentHealth += dmg;
-	}
-
-	public float getCurrHealth(){
-		return currentHealth;
-	}
-
-	public float getMaxHealth(){
-		return maxHealth;
-	}
-
+    public void Hit(float damange)
+    {
+        life -= damange;
+    }
+    void Update()
+    {
+        if (comImagem)
+        {
+            imagemHP.fillAmount = (life / 100f);
+        }
+        if (life <= 0)
+        {
+            Destroy(gameObject,1f);
+        }
+    }
 }

@@ -10,7 +10,7 @@ public class Inhibitor : MonoBehaviour {
 	List<GameObject> targets = new List<GameObject>();
 
 	void Start(){
-		this.GetComponent<LivingEntity>().onDeath += inhibitorBuff;
+		//this.GetComponent<LivingEntity>().onDeath += inhibitorBuff;
 	}
 
 	void inhibitorBuff(){

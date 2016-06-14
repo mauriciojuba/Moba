@@ -6,8 +6,7 @@ public class AI_Enemy_Hero_01 : MonoBehaviour {
     NavMeshAgent navAgent;
     GameObject Target, Player;
     Enemy_Hero_01_Eye Eye;
-	LivingEntity thisEntity;
-	float health;
+    LivingEntity life;
 
 
 
@@ -18,13 +17,12 @@ public class AI_Enemy_Hero_01 : MonoBehaviour {
     void Start()
     {
         //trocar para nome do player na cena original
-		thisEntity = this.GetComponent<LivingEntity>();
-		health = thisEntity.getCurrHealth();
         Player = GameObject.Find("Player");
         Eye = GetComponentInChildren<Enemy_Hero_01_Eye>();
         navAgent = GetComponent<NavMeshAgent>();
         state = new AIDelegate(Patroling);
         attack.SetActive(false);
+        life = GetComponent<LivingEntity>();
     }
 
     void Update()
@@ -43,7 +41,7 @@ public class AI_Enemy_Hero_01 : MonoBehaviour {
         if (Eye.playerNear)
         {
             Target = Player;
-			if (thisEntity.getCurrHealth() >= 30)
+			if (life.life >= 30)
             {
                 navAgent.ResetPath();
                 state = new AIDelegate(Chasing);
@@ -57,14 +55,17 @@ public class AI_Enemy_Hero_01 : MonoBehaviour {
         //esta patrulhando e a TORRE entra no raio de alcance
         else if (Eye.towerNear)
         {
-            navAgent.ResetPath();
-            state = new AIDelegate(RunningAway);
+            if (life.life <= 30)
+            {
+                navAgent.ResetPath();
+                state = new AIDelegate(RunningAway);
+            }
         }
         //esta patrulhando e um MINION entra no raio de alcance
         else if (Eye.minionNear)
         {
             Target = Eye.closestMinion;
-			if (thisEntity.getCurrHealth() >= 10)
+			if (life.life >= 10)
             {
                 navAgent.ResetPath();
                 state = new AIDelegate(Chasing);
@@ -80,6 +81,7 @@ public class AI_Enemy_Hero_01 : MonoBehaviour {
         attack.SetActive(false);
         if (navAgent.remainingDistance <= distanceToChangeWaypoint)
         {
+            navAgent.Resume();
             if (currentWaypoint < Waypoints.Length - 1)
             {
                 navAgent.ResetPath();
@@ -106,19 +108,16 @@ public class AI_Enemy_Hero_01 : MonoBehaviour {
         if (countToAttack >= attackDelay)
         {
             attack.SetActive(true);
+            countToAttack = 0;
             if (Vector3.Distance(transform.position, Target.transform.position) >= distanceToStopCombat || Target == null)
             {
                 state = new AIDelegate(Patroling);
-            }
-            else
-            {
-                attack.SetActive(false);
-                countToAttack = 0;
             }
         }
         else
         {
             countToAttack += Time.deltaTime;
+            attack.SetActive(false);
         }
     }
     #endregion
@@ -148,7 +147,7 @@ public class AI_Enemy_Hero_01 : MonoBehaviour {
     #region Recovery
     void Recovering()
     {
-		if (thisEntity.getCurrHealth() >= 100)
+		if (life.life >= 100)
         {
             state = new AIDelegate(Patroling);
         }

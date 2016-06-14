@@ -14,6 +14,7 @@ public class Turret : MonoBehaviour {
 	float currentCd;
 
 	public void OnTriggerEnter(Collider c){
+        Debug.Log("OK");
 		if(layers == (layers | (1 << c.gameObject.layer))){ //operacao bitwise pra descobrir se o collider c é da mesma layer da layermask
 			target = c.transform;
 		}
@@ -32,8 +33,8 @@ public class Turret : MonoBehaviour {
 	}
 		
 	void aimAt(){ // mira no alvo
-		Quaternion targetRot = Quaternion.LookRotation (target.position - rootBone.position);
-		rootBone.transform.rotation = Quaternion.RotateTowards (rootBone.rotation, targetRot, angularVelocity * Time.deltaTime);
+
+        rootBone.transform.LookAt(target);
 		if(currentCd==0){
 			shoot();
 		}

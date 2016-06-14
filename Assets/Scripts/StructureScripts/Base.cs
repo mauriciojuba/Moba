@@ -15,7 +15,7 @@ public class Base : MonoBehaviour {
 
 	void Start () 
 	{
-		this.GetComponent<LivingEntity>().onDeath+=baseDestroyed;
+		//this.GetComponent<LivingEntity>().onDeath+=baseDestroyed;
 		Invoke ("SpawnEnemy",Random.Range (minSpawnTime,maxSpawnTime));
 		enMaster = new GameObject();
 		enMaster.name = "enemies";
@@ -26,7 +26,7 @@ public class Base : MonoBehaviour {
 		for (int i = 0; i < squadronSize-1; i++) {
 			GameObject newEnemy = Instantiate (enemies [Random.Range (0, enemies.Length)], spawnPoint.position, spawnPoint.rotation) as GameObject;
 			newEnemy.transform.parent = enMaster.transform;
-			newEnemy.GetComponent<LivingEntity>().onDeath+=enemyDead;
+			//newEnemy.GetComponent<LivingEntity>().onDeath+=enemyDead;
 		}
 
 		Invoke ("SpawnEnemy",Random.Range (minSpawnTime,maxSpawnTime)); 
