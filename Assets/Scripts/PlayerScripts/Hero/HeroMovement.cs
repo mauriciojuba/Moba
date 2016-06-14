@@ -22,7 +22,7 @@ public class HeroMovement : MonoBehaviour {
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit,floor))
+            if (Physics.Raycast(ray, out hit,200,floor))
             {
                 agent.Resume();
                 targetDestination = hit.point;
