@@ -6,7 +6,7 @@ public class HeroMovement : MonoBehaviour {
 	private NavMeshAgent agent;
 	private Vector3 targetDestination;
 	private Animator animator;
-
+    public LayerMask floor;
 
 	// Use this for initialization
 	void Start () {
@@ -22,7 +22,7 @@ public class HeroMovement : MonoBehaviour {
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit,floor))
             {
                 agent.Resume();
                 targetDestination = hit.point;
@@ -30,7 +30,7 @@ public class HeroMovement : MonoBehaviour {
                 this.transform.LookAt(new Vector3(hit.transform.position.x, this.transform.position.y, hit.transform.position.z));
             }
         }
-        if (Vector3.Distance(transform.position, targetDestination) > 0.5f)
+        if (Vector3.Distance(transform.position, targetDestination) > 1f)
         {
             animator.SetBool("isMoving", true);
         }

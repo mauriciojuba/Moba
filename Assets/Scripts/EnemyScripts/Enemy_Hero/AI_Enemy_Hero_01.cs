@@ -17,7 +17,7 @@ public class AI_Enemy_Hero_01 : MonoBehaviour {
     void Start()
     {
         //trocar para nome do player na cena original
-        Player = GameObject.Find("Player_Example");
+        Player = GameObject.Find("Player");
         Eye = GetComponentInChildren<Enemy_Hero_01_Eye>();
         navAgent = GetComponent<NavMeshAgent>();
         state = new AIDelegate(Patroling);

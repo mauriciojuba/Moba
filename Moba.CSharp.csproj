@@ -63,12 +63,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\CameraScripts\CameraShake.cs" />
+    <Compile Include="Assets\Scripts\CameraScripts\TopDownCamera.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\Enemy_Hero\AI_Enemy_Hero_01.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\Enemy_Hero\Enemy_Hero_01_Attack.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\Enemy_Hero\Enemy_Hero_01_Eye.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\Enemy_Hero\Enemy_RecoveryPoint.cs" />
-    <Compile Include="Assets\Scripts\PlayerScripts\Hero.cs" />
-    <Compile Include="Assets\Scripts\PlayerScripts\HeroMovement.cs" />
+    <Compile Include="Assets\Scripts\PlayerScripts\Hero\Hero.cs" />
+    <Compile Include="Assets\Scripts\PlayerScripts\Hero\HeroMovement.cs" />
     <Compile Include="Assets\VICTOR_InimigoTurretBase\Scripts\Buffs.cs" />
     <Compile Include="Assets\VICTOR_InimigoTurretBase\Scripts\Bullet.cs" />
     <Compile Include="Assets\VICTOR_InimigoTurretBase\Scripts\EnemyAI.cs" />
