@@ -25,4 +25,12 @@ public class LivingEntity : MonoBehaviour, IDamageable {
 		currentHealth += dmg;
 	}
 
+	public float getCurrHealth(){
+		return currentHealth;
+	}
+
+	public float getMaxHealth(){
+		return maxHealth;
+	}
+
 }

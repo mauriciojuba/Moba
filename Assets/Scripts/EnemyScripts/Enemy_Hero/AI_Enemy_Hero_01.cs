@@ -6,7 +6,8 @@ public class AI_Enemy_Hero_01 : MonoBehaviour {
     NavMeshAgent navAgent;
     GameObject Target, Player;
     Enemy_Hero_01_Eye Eye;
-    public float Life;
+	LivingEntity thisEntity;
+	float health;
 
 
 
@@ -17,6 +18,8 @@ public class AI_Enemy_Hero_01 : MonoBehaviour {
     void Start()
     {
         //trocar para nome do player na cena original
+		thisEntity = this.GetComponent<LivingEntity>();
+		health = thisEntity.getCurrHealth();
         Player = GameObject.Find("Player");
         Eye = GetComponentInChildren<Enemy_Hero_01_Eye>();
         navAgent = GetComponent<NavMeshAgent>();
@@ -40,7 +43,7 @@ public class AI_Enemy_Hero_01 : MonoBehaviour {
         if (Eye.playerNear)
         {
             Target = Player;
-            if (Life >= 30)
+			if (thisEntity.getCurrHealth() >= 30)
             {
                 navAgent.ResetPath();
                 state = new AIDelegate(Chasing);
@@ -61,7 +64,7 @@ public class AI_Enemy_Hero_01 : MonoBehaviour {
         else if (Eye.minionNear)
         {
             Target = Eye.closestMinion;
-            if (Life >= 10)
+			if (thisEntity.getCurrHealth() >= 10)
             {
                 navAgent.ResetPath();
                 state = new AIDelegate(Chasing);
@@ -145,7 +148,7 @@ public class AI_Enemy_Hero_01 : MonoBehaviour {
     #region Recovery
     void Recovering()
     {
-        if (Life >= 100)
+		if (thisEntity.getCurrHealth() >= 100)
         {
             state = new AIDelegate(Patroling);
         }

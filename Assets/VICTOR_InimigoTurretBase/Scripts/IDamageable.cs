@@ -7,4 +7,8 @@ public interface IDamageable{
 
 	void healDamage (float dmg);
 
+	float getCurrHealth();
+
+	float getMaxHealth();
+
 }
