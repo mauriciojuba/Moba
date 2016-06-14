@@ -14,7 +14,7 @@ public class Inhibitor : MonoBehaviour {
 	}
 
 	void inhibitorBuff(){
-		gameObjs = FindObjectOfType(GameObject) as GameObject[];
+		gameObjs = FindObjectsOfTypeAll(typeof(GameObject)) as GameObject[]; 
 		foreach(GameObject go in gameObjs){
 			if(layers == (layers | (1 << go.layer))){
 				targets.Add(go);

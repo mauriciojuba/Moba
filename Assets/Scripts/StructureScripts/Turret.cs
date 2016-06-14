@@ -8,7 +8,6 @@ public class Turret : MonoBehaviour {
 	public float angularVelocity = 45.0f;
 	public Rigidbody bullet;
 	public LayerMask layers;
-	public string targetTag;
 	Transform target;
 	public Transform rootBone, muzzle;
 	public float cooldown;
@@ -44,10 +43,6 @@ public class Turret : MonoBehaviour {
 		GameObject bul = Instantiate(bullet, muzzle.position, muzzle.rotation) as GameObject;
 		currentCd = cooldown;
 		StartCoroutine(coolDown());
-	}
-
-	void OnDrawGizmosSelected(){
-		Gizmos.DrawWireSphere(transform.position,range); //desenha uma esfera pra indicar o alcance da turret
 	}
 
 	//realiza o cooldown da turret
