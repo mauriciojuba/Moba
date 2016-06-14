@@ -72,12 +72,15 @@
     <Compile Include="Assets\Scripts\EnemyScripts\Enemy_Hero\Enemy_Hero_01_Eye.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\Enemy_Hero\Enemy_RecoveryPoint.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\Enemy_Minions\AI_Enemy_Minion.cs" />
+    <Compile Include="Assets\Scripts\EnemyScripts\Enemy_Minions\AI_Enemy_Minion_Range.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\Enemy_Tower\Enemy_Tower.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\Enemy_Tower\Enemy_Tower_Range.cs" />
     <Compile Include="Assets\Scripts\IDamageable.cs" />
     <Compile Include="Assets\Scripts\LivingEntity.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\Hero\Hero.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\Hero\Hero_Attack.cs" />
+    <Compile Include="Assets\Scripts\PlayerScripts\MinionScripts\Player_Minion.cs" />
+    <Compile Include="Assets\Scripts\PlayerScripts\MinionScripts\Player_Minion_Range.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\TowerScripts\Player_Tower.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\TowerScripts\Player_Tower_Range.cs" />
     <Compile Include="Assets\Scripts\StructureScripts\Base.cs" />

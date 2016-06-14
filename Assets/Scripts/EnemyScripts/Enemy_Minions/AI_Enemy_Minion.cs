@@ -5,92 +5,91 @@ using System.Collections;
 public class AI_Enemy_Minion : MonoBehaviour {
 
     NavMeshAgent navAgent;
-    GameObject Target, Player;
-    Enemy_Hero_01_Eye Eye;
-    public GameObject attack;
-	IDamageable thisEntity;
-	float health;
-
-
-
+    GameObject Target;
+    AI_Enemy_Minion_Range Range;
+    public GameObject Attack;
     private delegate void AIDelegate();
     private AIDelegate state;
+    public int way;
+
+    public Transform[] waypointsA, waypointsB, waypointsC;
 
     void Start()
     {
-        //trocar para nome do player na cena original
-       
-		thisEntity = this.GetComponent<IDamageable>();
-		health = thisEntity.getCurrHealth();
-		Player = GameObject.Find("Player");
-        Eye = GetComponentInChildren<Enemy_Hero_01_Eye>();
+        Range = GetComponentInChildren<AI_Enemy_Minion_Range>();
         navAgent = GetComponent<NavMeshAgent>();
         state = new AIDelegate(Progress);
-        attack.SetActive(false);
+        Attack.SetActive(false);
     }
-    
+
     void Update()
     {
         state();
     }
 
-    public Transform[] Waypoints;
     int currentWaypoint = 0;
     public float distanceToChangeWaypoint;
     void Progress()
     {
-        if (Eye.playerNear)
+        if (Range.playerNear)
         {
-            Target = Player;
+            Target = Range.player;
             navAgent.ResetPath();
             state = new AIDelegate(Chasing);
         }
-        //esta patrulhando e a TORRE entra no raio de alcance
-        else if (Eye.towerNear)
+        else if (way == 0)
         {
-            Target = Eye.closestTower;
-            navAgent.ResetPath();
-            state = new AIDelegate(Chasing);
-        }
-        //esta patrulhando e um MINION entra no raio de alcance
-        else if (Eye.minionNear)
-        {
-            Target = Eye.closestMinion;
-            navAgent.ResetPath();
-            state = new AIDelegate(Chasing);
-        }
-
-        //patrulhando
-        attack.SetActive(false);
-        if (navAgent.remainingDistance <= distanceToChangeWaypoint)
-        {
-            if (currentWaypoint < Waypoints.Length - 1)
+            Attack.SetActive(false);
+            if (navAgent.remainingDistance <= distanceToChangeWaypoint)
             {
-                navAgent.ResetPath();
-                currentWaypoint++;
+                if (currentWaypoint < waypointsA.Length - 1)
+                {
+                    navAgent.ResetPath();
+                    currentWaypoint++;
+                }
+                else
+                {
+                    navAgent.ResetPath();
+                    currentWaypoint = 0;
+                }
+                navAgent.SetDestination(waypointsA[currentWaypoint].position);
             }
-            else
+        }
+        else if (way == 1)
+        {
+            Attack.SetActive(false);
+            if (navAgent.remainingDistance <= distanceToChangeWaypoint)
             {
-                navAgent.ResetPath();
-                currentWaypoint = 0;
+                if (currentWaypoint < waypointsB.Length - 1)
+                {
+                    navAgent.ResetPath();
+                    currentWaypoint++;
+                }
+                else
+                {
+                    navAgent.ResetPath();
+                    currentWaypoint = 0;
+                }
+                navAgent.SetDestination(waypointsB[currentWaypoint].position);
             }
-            navAgent.SetDestination(Waypoints[currentWaypoint].position);
         }
-    }
-
-    float distanceToTarget;
-    public float distanceToStartCombat;
-    void Chasing()
-    {
-        //enquanto não entra no alcance, continua tentando chegar perto
-        if (navAgent.remainingDistance <= distanceToStartCombat)
+        else if (way == 2)
         {
-            navAgent.ResetPath();
-            state = new AIDelegate(Attacking);
-        }
-        else
-        {
-            navAgent.SetDestination(Target.transform.position);
+            Attack.SetActive(false);
+            if (navAgent.remainingDistance <= distanceToChangeWaypoint)
+            {
+                if (currentWaypoint < waypointsC.Length - 1)
+                {
+                    navAgent.ResetPath();
+                    currentWaypoint++;
+                }
+                else
+                {
+                    navAgent.ResetPath();
+                    currentWaypoint = 0;
+                }
+                navAgent.SetDestination(waypointsC[currentWaypoint].position);
+            }
         }
     }
     public float attackDelay;
@@ -102,29 +101,32 @@ public class AI_Enemy_Minion : MonoBehaviour {
         //se estiver com problemas de colisão lembre de ver a stoppingDistance do navmesh
         if (countToAttack >= attackDelay)
         {
-            attack.SetActive(true);
+            Attack.SetActive(true);
+            countToAttack = 0;
             if (Vector3.Distance(transform.position, Target.transform.position) >= distanceToStopCombat || Target == null)
             {
                 state = new AIDelegate(Progress);
-            }
-            else
-            {
-                attack.SetActive(false);
-                countToAttack = 0;
             }
         }
         else
         {
             countToAttack += Time.deltaTime;
+            Attack.SetActive(false);
         }
     }
-    void GetHit()
+    float distanceToTarget;
+    public float distanceToStartCombat;
+    void Chasing()
     {
-
-    }
-    void Die()
-    {
-
+        if (navAgent.remainingDistance <= distanceToStartCombat)
+        {
+            navAgent.ResetPath();
+            state = new AIDelegate(Attacking);
+        }
+        else
+        {
+            navAgent.SetDestination(Target.transform.position);
+        }
     }
 
 }
